@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rules\File;
 
 class CartController extends Controller
 {
@@ -17,18 +19,16 @@ class CartController extends Controller
      */
     public function index()
     {
-
     }
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
-    {   
-       $labels = $this -> attr;
+    {
+        $labels = $this->attr;
         // Storage::disk('public')->deleteDirectory('images');
-        return view('cart',compact(['labels'])); 
-
+        return view('cart', compact(['labels']));
     }
 
     /**
@@ -36,11 +36,26 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
+        // validation image type 
         $request->validate([
             'image' => 'required|image',
         ]);
+        //  get user session 
+        $user_session = $request->session()->getId();
+        // create image folder 
+        $path = storage_path() . '/app/public/images';
+        if (!file_exists($path)) {
+            mkdir($path);
+        }
+        // create user image folder 
+        $user_dir = $path . '/' . $user_session;
+        if (file_exists($user_dir)) {
+            rmdir($user_dir);
+        }
+        mkdir($user_dir);
 
-        $request->file('image')->store('images', 'public');
+        $request->file('image')->store('images/'. $user_session , 'public');
+        dd($request->file('image'));
 
         return redirect()->route('cart.create')->with('alert', 'Image Uploaded Successfully');
     }

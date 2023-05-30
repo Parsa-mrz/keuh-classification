@@ -5,7 +5,7 @@
             @csrf
             <input type="hidden" name="_token" value="{{ csrf_token() }}" />
             <div class="mb-3">
-                <input type="file" class="form-control" name='image' id="customFile" />
+                <input type="file" class="form-control" name='image' id="customFile" multiple />
             </div>
             <div class="mb-3">
                 <button type="submit" class="btn btn-primary mb-3">ذخیره</button>
