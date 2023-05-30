@@ -11,18 +11,21 @@ use Symfony\Component\Finder\Iterator\RecursiveDirectoryIterator;
 
 class CartController extends Controller
 {
-   
+
     public function create(Request $request)
     {
         $session = $request->session()->getId();
         // select labels from database 
         $labels = Cart::select('labels')
-                        ->where('user_id', '=' , $session)
-                        ->get();
+            ->where('user_id', '=', $session)
+            ->get();
         $image_labels = $labels[0]->labels;
 
+        // Split the labels into an array
+        $labelsArray = explode("\n", $image_labels);
+
         // return cart view 
-        return view('cart', compact(['image_labels']));
+        return view('cart', compact(['labelsArray']));
     }
 
     /**
@@ -83,5 +86,4 @@ class CartController extends Controller
         // redirect after saving data
         return redirect()->route('cart.create')->with('alert', 'Image Uploaded Successfully');
     }
-
 }

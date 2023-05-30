@@ -32,13 +32,7 @@
                 </div>
                 <div class="col-12 col-md-7" style="background-color: rgb(223, 170, 58);">
                     <h1>Cart</h1>
-                    <div>
-                        @if($image_labels)
-                        <h1>Orders</h1>
-                        <pre>
-                        {{ $image_labels}}
-                        @endif
-                    </div>
+                    @if(!empty($labelsArray[0]))
                     <table class="table">
                         <thead>
                             <tr>
@@ -50,27 +44,15 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($labelsArray as $label)
                             <tr>
                                 <th scope="row">1</th>
-                                <td>Cucumber</td>
+                                <td>{{$label}}</td>
                                 <td>4</td>
                                 <td>0.5</td>
                                 <td>2.00</td>
                             </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Cucumber</td>
-                                <td>4</td>
-                                <td>0.5</td>
-                                <td>2.00</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Cucumber</td>
-                                <td>4</td>
-                                <td>0.5</td>
-                                <td>2.00</td>
-                            </tr>
+                            @endforeach
                         </tbody>
                         <tfoot>
                             <tr style="border: 1px solid black;">
@@ -82,7 +64,13 @@
                             </tr>
                         </tfoot>
                     </table>
+                    @endif
 
+                    @if(empty($labelsArray[0]))
+                    <div>
+                        <h3>The Cart is empty</h3>
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>
