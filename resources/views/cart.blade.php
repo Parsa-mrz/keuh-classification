@@ -2,17 +2,6 @@
     <x-slot name='content'>
         <div class="container-fluid">
             <div class="row">
-
-                <!-- <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-                    <div class="mb-3">
-                        <input type="file" class="form-control" name='image' id="customFile" multiple />
-                    </div>
-                    <div class="mb-3">
-                        <button type="submit" class="btn btn-primary mb-3">ذخیره</button>
-                    </div>
-                </form> -->
                 <div class="col-12 col-md-5 left-side custom-container">
                     <div class="card text-center main-details">
                         <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data" id="form1">
