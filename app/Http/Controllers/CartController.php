@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rules\File;
+use RecursiveIteratorIterator;
+use Symfony\Component\Finder\Iterator\RecursiveDirectoryIterator;
 
 class CartController extends Controller
 {
@@ -36,29 +38,57 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->file('image'));
+
         // validation image type 
         $request->validate([
-            'image' => 'required|image',
+            'image.*' => 'required|image',
         ]);
         //  get user session 
         $user_session = $request->session()->getId();
+
         // create image folder 
         $path = storage_path() . '/app/public/images';
         if (!file_exists($path)) {
-            mkdir($path);
+            mkdir($path, 0777, true);
         }
-        // create user image folder 
+        // Define the path for the current user's image directory
         $user_dir = $path . '/' . $user_session;
-        if (file_exists($user_dir)) {
+
+        // Delete the user's image directory if it already exists
+        if (is_dir($user_dir)) {
+            $it = new RecursiveDirectoryIterator($user_dir, RecursiveDirectoryIterator::SKIP_DOTS);
+            $files = new RecursiveIteratorIterator(
+                $it,
+                RecursiveIteratorIterator::CHILD_FIRST
+            );
+            foreach ($files as $file) {
+                if ($file->isDir()) {
+                    rmdir($file->getRealPath());
+                } else {
+                    unlink($file->getRealPath());
+                }
+            }
             rmdir($user_dir);
         }
-        mkdir($user_dir);
 
-        $request->file('image')->store('images/'. $user_session , 'public');
-        dd($request->file('image'));
+        // Create the user's image directory
+        mkdir($user_dir, 0777, true);
 
+        // save images in user dir 
+        $images = $request->file('image');
+        foreach ($images as $image) {
+            $image->store('images/' . $user_session, 'public');
+        }
+        // $request->file('image')->store('images/' . $user_session, 'public');
+
+        // redirect after saving data 
         return redirect()->route('cart.create')->with('alert', 'Image Uploaded Successfully');
     }
+
+
+
+
 
     /**
      * Display the specified resource.
