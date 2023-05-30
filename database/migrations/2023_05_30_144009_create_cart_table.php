@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cart', function (Blueprint $table) {
+        Schema::create('carts', function (Blueprint $table) {
             $table->id();
+            $table->text('user_id');
             $table->text('image_directory');
-            $table->text('labels');
+            $table->text('labels')->nullable();
             $table->timestamps();
         });
     }

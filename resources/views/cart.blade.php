@@ -32,6 +32,13 @@
                 </div>
                 <div class="col-12 col-md-7" style="background-color: rgb(223, 170, 58);">
                     <h1>Cart</h1>
+                    <div>
+                        @if($image_labels)
+                        <h1>Orders</h1>
+                        <pre>
+                        {{ $image_labels}}
+                        @endif
+                    </div>
                     <table class="table">
                         <thead>
                             <tr>
@@ -78,16 +85,6 @@
 
                 </div>
             </div>
-        </div>
-
-
-
-        <div>
-            @if($labels)
-            <h1>Orders</h1>
-            <pre>
-            {{ var_dump($labels) }}
-            @endif
         </div>
     </x-slot>
 </x-layout>
