@@ -12,10 +12,10 @@
             </div>
         </form>
         <div>
-            @if($attr)
+            @if($labels)
                 <h1>Orders</h1>
                 <pre>
-                {{ var_dump($attr) }}
+                {{ var_dump($labels) }}
             @endif
         </div>
     </x-slot>
