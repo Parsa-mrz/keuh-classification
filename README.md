@@ -18,6 +18,6 @@ python classify/main.py
 ## Php laravel script
 You can run the php code using this instruction:
 
-![](laravel.jpeg)
+![laravel 001](https://github.com/Parsa-mrz/keuh-classification/assets/91504922/d76a5f4c-c1e2-405a-8796-61195a6a0760)
 
 
