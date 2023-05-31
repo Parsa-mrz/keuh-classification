@@ -19,11 +19,21 @@ class CartController extends Controller
         $labels = Cart::select('labels')
             ->where('user_id', '=', $session)
             ->get();
-        $image_labels = $labels[0]->labels;
+
+        // check labels is set for user or not 
+        if ($labels->isEmpty()) {
+            $image_labels = '';
+        } else {
+            $image_labels = $labels[0]->labels ?? '';
+        }
 
         // Split the labels into an array
         $labelsArray = explode("\n", $image_labels);
 
+        // remove empty string 
+        $labelsArray = array_filter($labelsArray, function ($value) {
+            return $value !== "";
+        });
         // return cart view 
         return view('cart', compact(['labelsArray']));
     }

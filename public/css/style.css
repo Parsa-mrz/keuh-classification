@@ -1,3 +1,6 @@
+html{
+    background-color: rgb(223, 170, 58);
+}
 .left-side{
     background-color: rgb(223, 170, 58);
 }
@@ -5,11 +8,8 @@
 
 .right-side{
     background-color: rgb(97, 212, 88);
-    background-image: url("https://hips.hearstapps.com/hmg-prod/images/gorditas-1-1676665006.jpg");
+    background-image: url("./food.jpg");
     background-position: center;
-
-    
-
 }
 
 .btn-section{
@@ -17,8 +17,9 @@ width: 100% !important;
 }
 
 .btn-custom{
-    margin-top: 20px;
-    width: 100px;
+    margin: 15px 5px;
+    width: 150px;
+    border-radius: 10px;
 }
 .details{
     background-color: #6969697a;
@@ -29,14 +30,26 @@ width: 100% !important;
     width:300px;
     border: none;
 }
+.main-details{
+    background-color: transparent;
+    border:none;
+    color:#fff;
+    margin: auto;
+    border-radius: 25px;
+    padding: 20px 25px; 
+    width:400px;
+    height: 500px;
+
+    margin-top: 20%;
+
+}
 .custom-container{
-    height: 94vh;
+    height: 93vh;
 }
-.hdie-sec{
-    display: none;
-}
-.show-sec{
-    display: block;
+
+.gallery img{
+    height: 20rem;
+     width: 15rem;
 }
 
 
@@ -95,7 +108,7 @@ width: 100% !important;
         width: 500px;
     }
     .background-image{
-    background-image: url("https://hips.hearstapps.com/hmg-prod/images/gorditas-1-1676665006.jpg");
+    background-image: url("./food.jpg");
     background-position: center;
     width: 100%;
     height: 100%;
@@ -109,4 +122,43 @@ width: 100% !important;
         font-size:4rem;
         padding: 15px 7px;
     } 
+  }
+
+
+
+  .slider-images{
+    max-height: 400px;
+    object-fit: cover;
+    border: 3px solid black;
+    border-radius: 10px;
+  }
+
+  .input-label{
+    background-image: url(./camera100w.png);
+    background-repeat: no-repeat;
+    cursor: pointer;
+    background-position: center left;
+    background-size: contain;
+    width: 100%;
+    background-color: #198754;
+    height: 30px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #198754;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+      background-color: #198754;
+
   }

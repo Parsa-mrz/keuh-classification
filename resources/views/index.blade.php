@@ -1,5 +1,6 @@
 <x-layout>
     <x-slot name='content'>
+
         <div class="container-fluid">
 
             <div class="row" id="fist-sec">
@@ -15,7 +16,7 @@
                         </p>
                     </div>
                     <div class="text-center">
-                        <a href="{{ route('cart.create') }}">
+                        <a href="{{route('cart.create')}}">
                             <button type="button" class="btn btn-success btn-custom">Start</button>
                         </a>
                     </div>
@@ -26,6 +27,6 @@
             </div>
 
         </div>
-        <div>
+        <div>''
     </x-slot>
 </x-layout>
