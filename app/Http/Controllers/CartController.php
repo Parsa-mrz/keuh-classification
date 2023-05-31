@@ -30,10 +30,11 @@ class CartController extends Controller
         // Split the labels into an array
         $labelsArray = explode("\n", $image_labels);
 
-        // remove empty string 
+        // remove empty string if there is in labels array
         $labelsArray = array_filter($labelsArray, function ($value) {
             return $value !== "";
         });
+        
         // return cart view 
         return view('cart', compact(['labelsArray']));
     }
