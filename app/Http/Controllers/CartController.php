@@ -34,7 +34,7 @@ class CartController extends Controller
         $labelsArray = array_filter($labelsArray, function ($value) {
             return $value !== "";
         });
-        
+
         // return cart view 
         return view('cart', compact(['labelsArray']));
     }
@@ -84,7 +84,9 @@ class CartController extends Controller
         // save images in user dir
         $images = $request->file('image');
         foreach ($images as $image) {
-            $image->store('images/' . $user_session, 'public');
+            $filename = uniqid() . '.jpg';
+            $image->storeAs('images/' . $user_session, $filename, 'public');
+            // $image->store('images/' . $user_session, 'public');
         }
 
         // insert to database

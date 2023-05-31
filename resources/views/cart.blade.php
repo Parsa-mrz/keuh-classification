@@ -24,7 +24,7 @@
                     </div>
                     <div class="text-center">
                         <button type="button" class="btn btn-success btn-custom">Scan more</button>
-                        <button type="button" class="btn btn-success btn-custom">Add to cart</button>
+                        <button type="submit" class="btn btn-success btn-custom">Add to cart</button>
 
                     </div>
                     </form>
@@ -32,7 +32,7 @@
                 <div class="col-12 col-md-6" style="background-color: #dfaa3a;">
                     <h1>Cart</h1>
                     <div style="height: 400px; overflow-y: auto;">
-
+                        @if($labelsArray)
                         <table class="table table-borderless">
                             <thead>
                                 <tr>
@@ -43,7 +43,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @if($labelsArray)
                                 @foreach($labelsArray as $label)
                                 <tr>
                                     <th scope="row">{{$label}}</th>
@@ -52,7 +51,6 @@
                                     <td>2.00</td>
                                 </tr>
                                 @endforeach
-                                @endif
                             </tbody>
                             <tfoot>
                                 <tr style="border: 1px solid #ffffff;background-color: #fff; color: green; margin-top:5px;">
@@ -63,6 +61,13 @@
                                 </tr>
                             </tfoot>
                         </table>
+                        @endif
+
+                        @if(!$labelsArray)
+                        <div>
+                            <h2>Cart is empty</h2>
+                        </div>
+                        @endif
                     </div>
 
                 </div>

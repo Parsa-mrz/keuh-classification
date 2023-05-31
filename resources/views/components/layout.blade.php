@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <style>
         .input-label {
-            background-image: url({{asset('icons/camera100w.png')}});
+            background-image: url({{asset('icons/camera100w.png')}})
         }
     </style>
     <title>keuh-classification</title>
@@ -39,20 +39,34 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/js/bootstrap.bundle.min.js"></script>
     <script>
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
+        const fileInput = document.getElementById('file-input');
+        const carouselInner = document.querySelector('#image-preview .carousel-inner');
 
-                reader.onload = function(e) {
-                    $('#blah').attr('src', e.target.result);
-                }
+        fileInput.addEventListener('change', () => {
+            // Remove any previously displayed images
+            carouselInner.innerHTML = '';
 
-                reader.readAsDataURL(input.files[0]);
+            // Loop through all selected files
+            for (const file of fileInput.files) {
+                // Create a new image element
+                const img = document.createElement('img');
+                img.classList.add('d-block', 'w-100', "slider-images");
+                // Set the source ofthe image to the local file
+                img.src = URL.createObjectURL(file);
+                // Create a new carousel item for the image
+                const item = document.createElement('div');
+                item.classList.add('carousel-item');
+                // Add the image to the item
+                item.appendChild(img);
+                // Add the item to the carousel
+                carouselInner.appendChild(item);
             }
-        }
 
-        $("#imgInp").change(function() {
-            readURL(this);
+            // Set the first item as active
+            const firstItem = carouselInner.firstElementChild;
+            if (firstItem) {
+                firstItem.classList.add('active');
+            }
         });
     </script>
 </body>
