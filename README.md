@@ -18,7 +18,7 @@ python classify/main.py
 ## Php laravel script
 You can run the php code using this instruction:
 
-![laravel 001](https://github.com/Parsa-mrz/keuh-classification/assets/91504922/d76a5f4c-c1e2-405a-8796-61195a6a0760)
+![laravel 001](https://github.com/Parsa-mrz/keuh-classification/assets/91504922/42cdf57f-48db-4f8d-9bca-9fb3aaad64e7)
 
 
 ## UI
